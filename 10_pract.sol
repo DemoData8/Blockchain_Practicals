@@ -2,8 +2,8 @@
 
 pragma solidity >=0.8.2 <0.9.0;
 
-contract allowDenyStudent {
-    uint256[10] public rollNumbers;
+contract Pract10 {
+    uint256[6] public rollNumbers;
 
     function setRollNumber(uint _index, uint _rollNumber) public {
         // push() method is not available on fixed size array.
@@ -39,10 +39,15 @@ contract allowDenyStudent {
     uint256 public productOfresults;
 
     function checkProductOfResults() public view returns (bool) {
-        bool result;
+        bool flag;
         for (uint i = 0; i < rollNumbers.length; i++) {
-            result = (productOfresults == rollNumbers[i]) ? true : false;
+
+            if(productOfresults == rollNumbers[i]) {
+                flag = true;
+                break;
+            }    
+
         }
-        return result;
+        return flag;
     }
 }
