@@ -20,7 +20,7 @@ contract oveloadingChallenge {
     uint[] public op2Result;
     uint[] public op3Result;
 
-    function operation(uint _dd) public returns (uint[] memory) {
+    function operation(uint _dd) private returns (uint[] memory) {
         for (uint i = 0; i < pnrNumbers.length; i++) {
             uint element = pnrNumbers[i] & _dd;
             op1Result.push(element);
@@ -28,7 +28,7 @@ contract oveloadingChallenge {
         return op1Result;
     }
 
-    function operation(uint _dd, uint _mm) public returns (uint[] memory) {
+    function operation(uint _dd, uint _mm) private returns (uint[] memory) {
         for (uint i = 0; i < pnrNumbers.length; i++) {
             uint element = pnrNumbers[i] & _dd & _mm;
             op2Result.push(element);
@@ -41,7 +41,7 @@ contract oveloadingChallenge {
         uint _dd,
         uint _mm,
         uint _yy
-    ) public returns (uint[] memory) {
+    ) private returns (uint[] memory) {
         for (uint i = 0; i < pnrNumbers.length; i++) {
             uint element = pnrNumbers[i] & _dd & _mm & _yy;
             op3Result.push(element);
@@ -58,11 +58,16 @@ contract oveloadingChallenge {
     }
 
     function birthAssigner() public view returns (string memory) {
-        uint mulmod1 = mulmod(op1Result[0], op2Result[0], op3Result[0]);
-        uint mulmod2 = mulmod(op1Result[1], op2Result[1], op3Result[1]);
-        uint mulmod3 = mulmod(op1Result[2], op2Result[2], op3Result[2]);
-
         string memory print;
+        uint mulmod1 = 0;
+        uint mulmod2 = 0;
+        uint mulmod3 = 0;
+        if (op3Result[0] != 0)
+            mulmod1 = mulmod(op1Result[0], op2Result[0], op3Result[0]);
+        if (op3Result[1] != 0)
+            mulmod2 = mulmod(op1Result[1], op2Result[1], op3Result[1]);
+        if (op3Result[2] != 0)
+            mulmod3 = mulmod(op1Result[2], op2Result[2], op3Result[2]);
 
         if ((mulmod1 > mulmod2) && (mulmod1 > mulmod3)) {
             print = "Upper birth is assigned to user1";

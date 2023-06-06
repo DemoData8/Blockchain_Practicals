@@ -70,7 +70,7 @@ contract failedChallenge {
     // <======================utility functions======================================>
 
     function isComposite(uint _number) private pure returns (bool) {
-        if (_number <= 1) {
+        if (_number < 4) {
             return false;
         }
         for (uint i = 2; i <= _number / 2; i++) {
@@ -82,7 +82,7 @@ contract failedChallenge {
     }
 
     function isPrime(uint _number) private pure returns (bool) {
-        if (_number <= 1) {
+        if (_number < 2) {
             return false;
         }
 
