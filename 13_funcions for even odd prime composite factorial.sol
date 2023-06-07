@@ -1,4 +1,19 @@
 
+// factorial
+uint[] enrolledToMLDC = [1,2,3,4]
+    function factorialOfFirstFour() public view returns (uint256[4] memory) {
+        uint256[4] memory factorials;
+        for (uint256 i = 0; i < 4; i++) {
+            uint256 num = enrolledToMLDC[i];
+            uint256 factorial = 1;
+            for (uint256 j = 2; j <= num; j++) {
+                factorial *= j;
+            }
+            factorials[i] = factorial;
+        }
+        return factorials;
+    }
+
 // composite
 function isComposite(uint _number) private pure returns (bool) {
         if (_number < 4) {
